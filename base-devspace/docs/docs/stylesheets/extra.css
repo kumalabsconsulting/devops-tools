@@ -1,0 +1,27 @@
+
+[data-md-color-scheme="workspace"] {
+    --md-primary-fg-color:          #252525;
+    --md-accent-fg-color:           #19758F;
+    --md-default-bg-color:          #F5F7F7;
+    --md-typeset-color:             #1C1C1C;
+    --md-typeset-a-color:           #1C1C1C;
+    --md-code-bg-color:             #252525;
+    --md-code-fg-color:             #EAB676;
+}
+[data-md-color-scheme="workspace-dark"] {
+    --md-primary-fg-color:          #3C3C3C;
+    --md-accent-fg-color:           #E77260;
+    --md-default-bg-color:          #1E1E1E;
+    --md-typeset-color:             #9CDCFE;
+    --md-typeset-a-color:           #9CDCFE;
+    --md-code-bg-color:             #3C3C3C;
+    --md-code-fg-color:             #EAB676;
+}
+
+.md-header {
+    color: #FFFFFF; !important;
+    }
+
+.md-nav__link--active {
+    color: #eab676 !important;
+}

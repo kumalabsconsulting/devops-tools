@@ -1,5 +1,5 @@
 #FROM kumalabsconsulting/base-workspace:0.1
-FROM redbeard28/base-workspace:0.1
+FROM redbeard28/base-workspace:0.2
 
 
 # Set environmental variables for Code-server

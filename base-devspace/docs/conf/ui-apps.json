@@ -1,0 +1,36 @@
+{
+    "home": {
+        "TERMINAL": {
+            "port": 8022,
+            "title": "Terminal",
+            "description": "Full-fledged WEB-based Command Line Interface",
+            "image": "assets/home/terminal.png"
+        },
+        "FILEBROWSER": {
+            "port": 8023,
+            "title": "Filebrowser",
+            "name": "File Browser",
+            "description": "Browse, upload and download files and folders to and from the workspace",
+            "image": "assets/home/Filebrowser.png"
+        }
+
+    },
+    "admin": {
+        "Termianl": {
+            "port": 8022,
+            "path": "/",
+            "title": "Terminal",
+            "description": "Full-fledged WEB-based Command Line Interface",
+            "image": "terminal.png"
+        }
+    },
+    "mydocs": {
+        "MKDOCS_LIVE": {
+            "port": 8040,
+            "path": "/",
+            "title": "MkDocs live server",
+            "description": "Serve your MkDocs project with live reload. For example, <b>cd /home/examples/mkdocs-material; mkdocs serve -a 0.0.0.0:8040</b>",
+            "image": "mkdocs.png"
+        }
+    }
+}
