@@ -28,7 +28,6 @@ jobs:
               exit 0
             fi
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
-                cd ${CIRCLE_WORKING_DIRECTORY}
                 docker build -t ${DOCKER_REPO}:$MYTAG .
             fi
 #
