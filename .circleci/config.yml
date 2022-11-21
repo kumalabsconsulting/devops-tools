@@ -218,8 +218,6 @@ workflows:
   build_base_and_deploy_base:
     jobs:
       - build_base:
-          requires:
-            - deploy-debian-wks
           name: build-base-wks
           filters:
             branches:
@@ -237,8 +235,6 @@ workflows:
 
     jobs:
       - build_codeserver:
-          requires:
-            - deploy-base-wks
           filters:
             branches:
               only: main
