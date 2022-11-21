@@ -1,4 +1,10 @@
 version: 2.1
+executors:
+  docker:
+    - image: cimg/base:2022.11
+      auth:
+        username: $DOCKERHUB_USER
+        password: $DOCKERHUB_PASSWORD
 jobs:
 #  build:
 #    docker:
@@ -28,8 +34,7 @@ jobs:
 
   build_codeserver:
     working_directory: ~/codeserver-workspace
-    docker:
-      - image: cimg/base:2022.11
+    executor: docker
     steps:
       - checkout:
           path: ~/codeserver-workspace
@@ -56,8 +61,7 @@ jobs:
 
   deploy_codeserver:
     working_directory: ~/codeserver-workspace
-    docker:
-        - image: cimg/base:2022.11
+    executor: docker
     steps:
       - checkout:
           path: ~/codeserver-workspace
