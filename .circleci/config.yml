@@ -202,12 +202,14 @@ workflows:
   build_debian_and_deploy_debian:
     jobs:
       - build_debian:
+          name: build-debian-wks
           filters:
             branches:
               only: main
       - deploy_debian:
+          name: deploy-debian-wks
           requires:
-            - build_debian
+            - build-debian-wks
           filters:
             branches:
               only: main
@@ -215,15 +217,17 @@ workflows:
   ############ base WORKSPACE ###############
   build_base_and_deploy_base:
     filters:
-      - build_debian_and_deploy_debian
+      - deploy-debian-wks
     jobs:
       - build_base:
+          name: build-base-wks
           filters:
             branches:
               only: main
       - deploy_base:
+          name: deploy-base-wks
           requires:
-            - build_base
+            - build-base-wksv
           filters:
             branches:
               only: main
@@ -231,7 +235,7 @@ workflows:
   ############ codeserver WORKSPACE ###############
   build_codeserver_and_deploy_codeserver:
     filters:
-      - build_base_and_deploy_base
+      - deploy-base-wks
     jobs:
       - build_codeserver:
           filters:
