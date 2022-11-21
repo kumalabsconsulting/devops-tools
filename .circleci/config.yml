@@ -44,6 +44,7 @@ jobs:
             if [ $STATUS == "active" ]; then
               
               echo "#######@ NOTHING TO DO #####"
+              exit 0
             else
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 cd codeserver-workspace
