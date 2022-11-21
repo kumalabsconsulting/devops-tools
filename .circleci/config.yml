@@ -1,32 +1,137 @@
 version: 2.1
 
 jobs:
-#  build:
-#    docker:
-#      # specify the version
-#      - image: cimg/base:2022.11
-#        auth:
-#          username: $DOCKERHUB_USER
-#          password: $DOCKERHUB_PASSWORD
-#    steps:
-#      - checkout
-#      - setup_remote_docker
+############ debian WORKSPACE ###############
+  build_debian:
+    working_directory: ~/debian-workspace
+    docker:
+      - image: cimg/base:2022.11
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout:
+          path: $CIRCLE_WORKING_DIRECTORY
+      - setup_remote_docker
+      - run:
+          name: Build Debian Docker image
+          environment:
+            MYTAG: 0.2
+            DOCKER_REPO: redbeard28/debian-workspace
+          command: |
+            TOKEN=$( curl -sSLd "username=${DOCKERHUB_USER}&password=${DOCKERHUB_PASSWORD}" https://hub.docker.com/v2/users/login | jq -r ".token" )
+            STATUS=$( curl -sH "Authorization: JWT $TOKEN" "https://hub.docker.com/v2/repositories/${DOCKER_REPO}/tags/${MYTAG}/" | jq -r ".tag_status" )
+            echo $STATUS
+            if [ $STATUS == "active" ]; then
+              
+              echo "#######@ NOTHING TO DO #####"
+              exit 0
+            else
+              if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                cd $CIRCLE_WORKING_DIRECTORY
+                docker build -t ${DOCKER_REPO}:$MYTAG .
+              fi
+            fi
 #
-#      - run:
-#          name: Push application Docker image
-#          environment:
-#            DOCKER_REPO: redbeard28/codeserver-workspace:0.2
-#          command: |
-#            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-#              cd codeserver-workspace
-#              docker build -t ${DOCKER_REPO} .
-#              echo "Avant Login"
-#              echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
-#              echo "Avant push docker hub"
-#              docker push ${DOCKER_REPO}
-#            fi
+#
+  deploy_debian:
+    working_directory: ~/debian-workspace
+    docker:
+      - image: cimg/base:2022.11
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout:
+          path: $CIRCLE_WORKING_DIRECTORY
+      - setup_remote_docker
+      - run:
+          name: Deploy Debian Docker image
+          environment:
+            MYTAG: 0.2
+            DOCKER_REPO: redbeard28/debian-workspace
+          command: |
+            TOKEN=$( curl -sSLd "username=${DOCKERHUB_USER}&password=${DOCKERHUB_PASSWORD}" https://hub.docker.com/v2/users/login | jq -r ".token" )
+            STATUS=$( curl -sH "Authorization: JWT $TOKEN" "https://hub.docker.com/v2/repositories/${DOCKER_REPO}/tags/${MYTAG}/" | jq -r ".tag_status" )
+            echo $STATUS
+            if [ $STATUS == "active" ]; then
+              
+              echo "#######@ NOTHING TO DO #####"
+              exit 0
+            else
+              if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
+                docker push ${DOCKER_REPO}:$MYTAG
+              fi
+            fi
+############ END debian WORKSPACE ###############
 
-
+############ debian WORKSPACE ###############
+  build_base:
+    working_directory: ~/base-devspace
+    docker:
+      - image: cimg/base:2022.11
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout:
+          path: $CIRCLE_WORKING_DIRECTORY
+      - setup_remote_docker
+      - run:
+          name: Build base Docker image
+          environment:
+            MYTAG: 0.2
+            DOCKER_REPO: redbeard28/base-devspace
+          command: |
+            TOKEN=$( curl -sSLd "username=${DOCKERHUB_USER}&password=${DOCKERHUB_PASSWORD}" https://hub.docker.com/v2/users/login | jq -r ".token" )
+            STATUS=$( curl -sH "Authorization: JWT $TOKEN" "https://hub.docker.com/v2/repositories/${DOCKER_REPO}/tags/${MYTAG}/" | jq -r ".tag_status" )
+            echo $STATUS
+            if [ $STATUS == "active" ]; then
+              
+              echo "#######@ NOTHING TO DO #####"
+              exit 0
+            else
+              if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                cd $CIRCLE_WORKING_DIRECTORY
+                docker build -t ${DOCKER_REPO}:$MYTAG .
+              fi
+            fi
+#
+#
+  deploy_base:
+    working_directory: ~/base-devspace
+    docker:
+      - image: cimg/base:2022.11
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout:
+          path: $CIRCLE_WORKING_DIRECTORY
+      - setup_remote_docker
+      - run:
+          name: Deploy base Docker image
+          environment:
+            MYTAG: 0.2
+            DOCKER_REPO: redbeard28/base-devspace
+          command: |
+            TOKEN=$( curl -sSLd "username=${DOCKERHUB_USER}&password=${DOCKERHUB_PASSWORD}" https://hub.docker.com/v2/users/login | jq -r ".token" )
+            STATUS=$( curl -sH "Authorization: JWT $TOKEN" "https://hub.docker.com/v2/repositories/${DOCKER_REPO}/tags/${MYTAG}/" | jq -r ".tag_status" )
+            echo $STATUS
+            if [ $STATUS == "active" ]; then
+              
+              echo "#######@ NOTHING TO DO #####"
+              exit 0
+            else
+              if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
+                docker push ${DOCKER_REPO}:$MYTAG
+              fi
+            fi
+############ END base WORKSPACE ###############
+#
+############ codeserver WORKSPACE ###############
   build_codeserver:
     working_directory: ~/codeserver-workspace
     docker:
@@ -36,7 +141,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout:
-          path: ~/codeserver-workspace
+          path: $CIRCLE_WORKING_DIRECTORY
       - setup_remote_docker
       - run:
           name: Build application Docker image
@@ -53,13 +158,12 @@ jobs:
               exit 0
             else
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
-                cd codeserver-workspace
+                cd $CIRCLE_WORKING_DIRECTORY
                 docker build -t ${DOCKER_REPO}:$MYTAG .
               fi
             fi
-
-
-
+#
+#
   deploy_codeserver:
     working_directory: ~/codeserver-workspace
     docker:
@@ -69,7 +173,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout:
-          path: ~/codeserver-workspace
+          path: $CIRCLE_WORKING_DIRECTORY
       - setup_remote_docker
       - run:
           name: Deploy application Docker image
@@ -90,19 +194,51 @@ jobs:
                 docker push ${DOCKER_REPO}:$MYTAG
               fi
             fi
-
+############ END codeserver WORKSPACE ###############
 
 workflows:
   version: 2
+  ############ debian WORKSPACE ###############
+  build_debian_and_deploy_debian:
+    jobs:
+      - build_debian:
+          filters:
+            branches:
+              only: main
+      - deploy_debian:
+          requires:
+            - build_debian
+          filters:
+            branches:
+              only: main
+  ############ END debian WORKSPACE ###############
+  ############ base WORKSPACE ###############
+  build_base_and_deploy_base:
+    jobs:
+      - build_base:
+          filters:
+            branches:
+              only: main
+      - deploy_base:
+          requires:
+            - build_debian
+            - build_base
+          filters:
+            branches:
+              only: main
+  ############ END debian WORKSPACE ###############
+  ############ codeserver WORKSPACE ###############
   build_codeserver_and_deploy_codeserver:
     jobs:
-      - build_codeserver:
+      - build_debian:
           filters:
             branches:
               only: main
-      - deploy_codeserver:
+      - deploy_debian:
           requires:
-            - build_codeserver
+            - build_debian
+            - build_base
           filters:
             branches:
               only: main
+  ############ END codeserver WORKSPACE ###############
