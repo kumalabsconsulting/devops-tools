@@ -7,8 +7,12 @@ jobs:
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - setup_remote_docker
 
       - deploy:
+          name: Push application Docker image
           environment:
             DOCKER_REPO: redbeard28/codeserver-workspace:0.2
           command: |
