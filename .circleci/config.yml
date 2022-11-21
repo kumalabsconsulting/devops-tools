@@ -227,7 +227,7 @@ workflows:
       - deploy_base:
           name: deploy-base-wks
           requires:
-            - build-base-wksv
+            - build-base-wks
           filters:
             branches:
               only: main
