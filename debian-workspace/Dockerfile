@@ -1,6 +1,6 @@
 FROM debian:stable
 
-COPY supervisord/unified-supervisord.conf supervisord.conf /etc/supervisord/
+COPY supervisord/unified-supervisord.conf supervisord/supervisord.conf /etc/supervisord/
 COPY mc.ini /home/abc/.config/mc/ini
 COPY zsh-in-docker.sh /tmp/zsh-in-docker.sh
 
