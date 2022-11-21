@@ -15,14 +15,12 @@ jobs:
           name: Push application Docker image
           environment:
             DOCKER_REPO: redbeard28/codeserver-workspace:0.2
-            username: $DOCKERHUB_USER
-            password: $DOCKERHUB_PASSWORD
           command: |
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
               cd codeserver-workspace
               docker build -t ${DOCKER_REPO} .
               echo "Avant Login"
-              echo $password | docker login -u ${username} --password-stdin
+              echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
               echo "Avant push docker hub"
               docker push ${DOCKER_REPO}
             fi
