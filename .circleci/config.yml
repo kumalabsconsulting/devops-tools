@@ -216,7 +216,7 @@ workflows:
   ############ END debian WORKSPACE ###############
   ############ base WORKSPACE ###############
   build_base_and_deploy_base:
-    filters:
+    requires:
       - deploy-debian-wks
     jobs:
       - build_base:
@@ -234,7 +234,7 @@ workflows:
   ############ END debian WORKSPACE ###############
   ############ codeserver WORKSPACE ###############
   build_codeserver_and_deploy_codeserver:
-    filters:
+    requires:
       - deploy-base-wks
     jobs:
       - build_codeserver:
