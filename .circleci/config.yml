@@ -22,7 +22,7 @@ jobs:
               cd codeserver-workspace
               docker build -t ${DOCKER_REPO} .
               echo "Avant Login"
-              docker login -u ${username} -p ${password}
+              echo $password | docker login -u ${username} --password-stdin
               echo "Avant push docker hub"
               docker push ${DOCKER_REPO}
             fi
