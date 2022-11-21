@@ -3,15 +3,14 @@ version: 2.1
 jobs:
 ############ debian WORKSPACE ###############
   build_debian:
-    working_directory: ~/debian-workspace
+
     docker:
       - image: cimg/base:2022.11
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     steps:
-      - checkout:
-          path: $CIRCLE_WORKING_DIRECTORY
+      - checkout
       - setup_remote_docker
       - run:
           name: Build Debian Docker image
@@ -30,20 +29,19 @@ jobs:
               exit 0
             fi
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
-                docker build -t ${DOCKER_REPO}:$MYTAG .
+              cd debian-workspace
+              docker build -t ${DOCKER_REPO}:$MYTAG .
             fi
 #
 #
   deploy_debian:
-    working_directory: ~/debian-workspace
     docker:
       - image: cimg/base:2022.11
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     steps:
-      - checkout:
-          path: $CIRCLE_WORKING_DIRECTORY
+      - checkout
       - setup_remote_docker
       - run:
           name: Deploy Debian Docker image
@@ -67,15 +65,13 @@ jobs:
 
 ############ debian WORKSPACE ###############
   build_base:
-    working_directory: ~/base-devspace
     docker:
       - image: cimg/base:2022.11
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     steps:
-      - checkout:
-          path: $CIRCLE_WORKING_DIRECTORY
+      - checkout
       - setup_remote_docker
       - run:
           name: Build base Docker image
@@ -92,22 +88,20 @@ jobs:
               exit 0
             elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
-                cd $CIRCLE_WORKING_DIRECTORY
+                cd base-devspace
                 docker build -t ${DOCKER_REPO}:$MYTAG .
               fi
             fi
 #
 #
   deploy_base:
-    working_directory: ~/base-devspace
     docker:
       - image: cimg/base:2022.11
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     steps:
-      - checkout:
-          path: $CIRCLE_WORKING_DIRECTORY
+      - checkout
       - setup_remote_docker
       - run:
           name: Deploy base Docker image
@@ -132,15 +126,13 @@ jobs:
 #
 ############ codeserver WORKSPACE ###############
   build_codeserver:
-    working_directory: ~/codeserver-workspace
     docker:
       - image: cimg/base:2022.11
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     steps:
-      - checkout:
-          path: $CIRCLE_WORKING_DIRECTORY
+      - checkout
       - setup_remote_docker
       - run:
           name: Build application Docker image
@@ -157,22 +149,20 @@ jobs:
               exit 0
             elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
-                cd $CIRCLE_WORKING_DIRECTORY
+                cd codeserver-workspace
                 docker build -t ${DOCKER_REPO}:$MYTAG .
               fi
             fi
 #
 #
   deploy_codeserver:
-    working_directory: ~/codeserver-workspace
     docker:
       - image: cimg/base:2022.11
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     steps:
-      - checkout:
-          path: $CIRCLE_WORKING_DIRECTORY
+      - checkout
       - setup_remote_docker
       - run:
           name: Deploy application Docker image
