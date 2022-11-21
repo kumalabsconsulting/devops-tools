@@ -220,9 +220,6 @@ workflows:
             branches:
               only: main
       - deploy_base:
-          requires:
-            - build_debian
-            - build_base
           filters:
             branches:
               only: main
@@ -235,9 +232,6 @@ workflows:
             branches:
               only: main
       - deploy_codeserver:
-          requires:
-            - build_debian
-            - build_base
           filters:
             branches:
               only: main
