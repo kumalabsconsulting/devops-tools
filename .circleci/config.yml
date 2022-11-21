@@ -217,7 +217,7 @@ workflows:
     jobs:
       - build_base:
           requires:
-            - deploy_debian
+            - build_debian_and_deploy_debian
           filters:
             branches:
               only: main
