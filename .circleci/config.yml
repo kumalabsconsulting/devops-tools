@@ -78,7 +78,7 @@ workflows:
             branches:
               only: main
       - deploy_codeserver:
-          require:
+          requires:
             - build_codeserver
           filters:
             branches:
