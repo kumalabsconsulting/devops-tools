@@ -26,7 +26,8 @@ jobs:
               
               echo "#######@ NOTHING TO DO #####"
               exit 0
-            elif [ -z $STATUS ];then
+            fi
+            if [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 cd $CIRCLE_WORKING_DIRECTORY
                 docker build -t ${DOCKER_REPO}:$MYTAG .
