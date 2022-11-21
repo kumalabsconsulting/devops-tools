@@ -39,7 +39,7 @@ jobs:
             MYTAG: 0.2
             DOCKER_REPO: redbeard28/codeserver-workspace:$MYTAG
           command: |
-            if [ `docker manifest inspect ${DOCKER_REPO}:${MYTAG} > /dev/null` -eq "0" ]; then
+            if [ `docker manifest inspect ${DOCKER_REPO}:${MYTAG} > /dev/null` -eq '0' ]; then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 cd codeserver-workspace
                 docker build -t ${DOCKER_REPO} .
