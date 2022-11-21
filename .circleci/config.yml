@@ -26,7 +26,7 @@ jobs:
               
               echo "#######@ NOTHING TO DO #####"
               exit 0
-            elif [ -z $STATUS];then
+            elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 cd $CIRCLE_WORKING_DIRECTORY
                 docker build -t ${DOCKER_REPO}:$MYTAG .
@@ -58,7 +58,7 @@ jobs:
               
               echo "#######@ NOTHING TO DO #####"
               exit 0
-            elif [ -z $STATUS];then
+            elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
                 docker push ${DOCKER_REPO}:$MYTAG
@@ -91,7 +91,7 @@ jobs:
               
               echo "#######@ NOTHING TO DO #####"
               exit 0
-            elif [ -z $STATUS];then
+            elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 cd $CIRCLE_WORKING_DIRECTORY
                 docker build -t ${DOCKER_REPO}:$MYTAG .
@@ -123,7 +123,7 @@ jobs:
               
               echo "#######@ NOTHING TO DO #####"
               exit 0
-            elif [ -z $STATUS];then
+            elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
                 docker push ${DOCKER_REPO}:$MYTAG
@@ -156,7 +156,7 @@ jobs:
               
               echo "#######@ NOTHING TO DO #####"
               exit 0
-            elif [ -z $STATUS];then
+            elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 cd $CIRCLE_WORKING_DIRECTORY
                 docker build -t ${DOCKER_REPO}:$MYTAG .
@@ -188,7 +188,7 @@ jobs:
               
               echo "#######@ NOTHING TO DO #####"
               exit 0
-            elif [ -z $STATUS];then
+            elif [ -z $STATUS ];then
               if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
                 docker push ${DOCKER_REPO}:$MYTAG
