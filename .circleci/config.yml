@@ -38,6 +38,7 @@ jobs:
     steps:
       - checkout:
           path: ~/codeserver-workspace
+      - setup_remote_docker
       - run:
           name: Build application Docker image
           environment:
@@ -65,6 +66,7 @@ jobs:
     steps:
       - checkout:
           path: ~/codeserver-workspace
+      - setup_remote_docker
       - run:
           name: Build application Docker image
           environment:
