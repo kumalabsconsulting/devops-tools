@@ -230,10 +230,10 @@ workflows:
   ############ END debian WORKSPACE ###############
   ############ codeserver WORKSPACE ###############
   build_codeserver_and_deploy_codeserver:
+    filters:
+      - build_base_and_deploy_base
     jobs:
       - build_codeserver:
-          requires:
-            - deploy_base
           filters:
             branches:
               only: main
