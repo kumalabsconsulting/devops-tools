@@ -130,7 +130,7 @@ jobs:
               exit 0
             fi
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              cd codeserver-workspace
+              cd ansible-terraform-workspace
               docker build -t ${DOCKER_REPO}:$MYTAG .
               if [ $? == 0 ];then
                 echo $DOCKERHUB_PASSWORD | docker login -u ${DOCKERHUB_USER} --password-stdin
