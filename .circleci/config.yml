@@ -211,26 +211,12 @@ workflows:
           filters:
             branches:
               only: main
-      - deploy_base:
-          name: deploy-base-wks
-          requires:
-            - build-base-wks
-          filters:
-            branches:
-              only: main
   ############ END debian WORKSPACE ###############
   ############ codeserver WORKSPACE ###############
   build_codeserver_and_deploy_codeserver:
-
     jobs:
       - build_codeserver:
           name: build-codeserver
-          filters:
-            branches:
-              only: main
-      - deploy_codeserver:
-          requires:
-            - build-codeserver
           filters:
             branches:
               only: main
