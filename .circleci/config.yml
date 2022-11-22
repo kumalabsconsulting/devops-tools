@@ -224,6 +224,7 @@ workflows:
 
     jobs:
       - build_codeserver:
+          name: build_codeserver
           filters:
             branches:
               only: main
