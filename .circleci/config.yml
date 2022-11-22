@@ -1,6 +1,7 @@
 version: 2.1
 
 jobs:
+  parallelism: 1
 ############ debian WORKSPACE ###############
   build_debian:
 
@@ -65,8 +66,6 @@ jobs:
 
 ############ debian WORKSPACE ###############
   build_base:
-    requires:
-      - build_debian
     docker:
       - image: cimg/base:2022.11
         auth:
