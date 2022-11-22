@@ -208,6 +208,8 @@ workflows:
     jobs:
       - build_base:
           name: build-base-wks
+          requires:
+            - build-debian-wks
           filters:
             branches:
               only: main
@@ -217,6 +219,8 @@ workflows:
     jobs:
       - build_codeserver:
           name: build-codeserver
+          requires:
+            - build-base-wks
           filters:
             branches:
               only: main
