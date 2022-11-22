@@ -154,15 +154,12 @@ workflows:
               only: main
       - build_codeserver:
           requires:
-            - build_debian
             - build_base
           filters:
             branches:
               only: main
       - build_ansible_terraform:
           requires:
-            - build_debian
-            - build_base
             - build_codeserver
           filters:
             branches:
