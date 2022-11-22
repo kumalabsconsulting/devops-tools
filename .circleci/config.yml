@@ -65,6 +65,8 @@ jobs:
 
 ############ debian WORKSPACE ###############
   build_base:
+    requires:
+      - build_debian
     docker:
       - image: cimg/base:2022.11
         auth:
@@ -208,8 +210,6 @@ workflows:
     jobs:
       - build_base:
           name: build-base-wks
-          requires:
-            - build-debian-wks
           filters:
             branches:
               only: main
@@ -219,8 +219,6 @@ workflows:
     jobs:
       - build_codeserver:
           name: build-codeserver
-          requires:
-            - build-base-wks
           filters:
             branches:
               only: main
