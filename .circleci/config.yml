@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  parallelism: 1
+
 ############ debian WORKSPACE ###############
   build_debian:
 
@@ -188,37 +188,22 @@ jobs:
 #
 workflows:
   version: 2
-  ############ debian WORKSPACE ###############
-  build_debian_and_deploy_debian:
+  build_and_deploy:
     jobs:
       - build_debian:
-          name: build-debian-wks
           filters:
             branches:
               only: main
-#      - deploy_debian:
-#          name: deploy-debian-wks
-#          requires:
-#            - build-debian-wks
-#          filters:
-#            branches:
-#              only: main
-  ############ END debian WORKSPACE ###############
-  ############ base WORKSPACE ###############
-  build_base_and_deploy_base:
-    jobs:
       - build_base:
-          name: build-base-wks
+          requires:
+            - build_debian
           filters:
             branches:
               only: main
-  ############ END debian WORKSPACE ###############
-  ############ codeserver WORKSPACE ###############
-  build_codeserver_and_deploy_codeserver:
-    jobs:
       - build_codeserver:
-          name: build-codeserver
+          requires:
+            - build_debian
+            - build_base
           filters:
             branches:
               only: main
-  ############ END codeserver WORKSPACE ###############
