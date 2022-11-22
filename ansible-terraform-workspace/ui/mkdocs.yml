@@ -1,0 +1,42 @@
+edit_uri: ''
+extra:
+  homepage: https://www.linkedin.com/in/jeremiecuadrado
+  host_url: https://www.linkedin.com/in/jeremiecuadrado
+extra_css:
+- stylesheets/extra.css
+- stylesheets/quickstart.css
+extra_javascript:
+- javascripts/config.js
+- https://polyfill.io/v3/polyfill.min.js?features=es6
+nav:
+- Home: README.md
+- My apps: pages/my_apps.md
+- Admin: pages/admin.md
+- About: about.md
+- Docs: https://www.linkedin.com/in/jeremiecuadrado
+plugins:
+- macros:
+    module_name: macros/helpers
+repo_url: https://github.com/bluxmit/alnoda-workspaces
+site_name: Ansible-Terraform workspace
+site_url: https://www.linkedin.com/in/jeremiecuadrado
+theme:
+  custom_dir: overrides
+  favicon: assets/terraform-circle.svg
+  features:
+  - navigation.instant
+  font:
+    text: PT Sans
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/terraform-circle-white.svg
+  name: material
+  palette:
+  - scheme: workspace
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - scheme: workspace-dark
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode

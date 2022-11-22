@@ -1,0 +1,96 @@
+{
+    "home": {
+        "IDE": {
+            "port": 8021,
+            "title": "IDE",
+            "description": "Browser-based version of Visual Studio Code. Develop in any language, install hundreeds of extensions",
+            "image": "assets/home/IDE.jpg"
+        },
+        "TERMINAL": {
+            "port": 8022,
+            "title": "Terminal",
+            "description": "Full-fledged WEB-based Command Line Interface",
+            "image": "assets/home/terminal.png"
+        },
+        "FILEBROWSER": {
+            "port": 8023,
+            "title": "Filebrowser",
+            "name": "File Browser",
+            "description": "Browse, upload and download files and folders to and from the workspace",
+            "image": "assets/home/Filebrowser.png"
+        },
+        "UNGIT": {
+            "port": 8024,
+            "title": "Ungit",
+            "description": "Manage Git repositories and work flow using beautiful UI",
+            "image": "assets/home/Ungit.jpg"
+        },
+        "Static file server": {
+            "port": 8028,
+            "path": "/",
+            "title": "Static File Server",
+            "description": "Serve any static websites like a breeze",
+            "image": "assets/home/static-file-server.png"
+        },
+        "Ansible Ara": {
+            "port": 8032,
+            "path": "/",
+            "title": "Ansible Ara",
+            "description": "Monitor for all Ansible plays",
+            "image": "assets/home/ara.png"
+        },
+        "Terraform Rover": {
+            "port": 8034,
+            "title": "Terraform Rover",
+            "description": "Not started! Start manually with your Terraform project dir, i.e.  <b>cd /home/examples/terraform-scaleway/; terraform init; rover --workingDir /home/examples/terraform-scaleway/</b>",
+            "image": "assets/home/terraform-rover.png"
+        },
+        "Blast Radius": {
+            "port": 8033,
+            "title": "Blast Radius",
+            "description": "Not started! Start manually with your Terraform project dir, i.e.  <b>cd /home/examples/terraform-scaleway; terraform init; blast-radius --serve --port 8033</b>",
+            "image": "assets/home/blast-radius.png"
+        },
+        "Cronicle": {
+            "port": 8029,
+            "path": "/",
+            "title": "Cronicle",
+            "description": "Schedule jobs, manage schedules, observe and monitor executions (user/pass - admin/admin)",
+            "image": "assets/home/cronicle.jpg"
+        }
+    },
+    "admin": {
+        "Termianl": {
+            "port": 8022,
+            "path": "/",
+            "title": "Terminal",
+            "description": "Full-fledged WEB-based Command Line Interface",
+            "image": "terminal.png"
+        },
+        "Workspace settings": {
+            "port": 8025,
+            "title": "Workspace settings",
+            "description": "Configure workspace appearance. Start new applicatios and services",
+            "image": "alnoda-admin.png"
+        },
+        "M.Commander": {
+            "port": 8026,
+            "title": "M.Commander",
+            "description": "Feature rich visual file manager with internal text viewer and editor",
+            "image": "mc.jpg"
+        },
+        "Htop": {
+            "port": 8027,
+            "title": "Process monitor",
+            "description": "Monitor running process and resource utilization",
+            "image": "htop.jpg"
+        },
+        "Cronicle": {
+            "port": 8029,
+            "path": "/",
+            "title": "Cronicle",
+            "description": "Schedule jobs, manage schedules, observe and monitor executions (user/pass - admin/admin)",
+            "image": "cronicle.jpg"
+        }
+    }
+}
