@@ -224,13 +224,13 @@ workflows:
 
     jobs:
       - build_codeserver:
-          name: build_codeserver
+          name: build-codeserver
           filters:
             branches:
               only: main
       - deploy_codeserver:
           requires:
-            - build_codeserver
+            - build-codeserver
           filters:
             branches:
               only: main
