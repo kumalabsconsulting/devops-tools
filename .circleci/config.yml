@@ -164,6 +164,6 @@ workflows:
             - build_debian
             - build_base
             - build_codeserver
-            filters:
-              branches:
-                only: main
+          filters:
+            branches:
+              only: main
