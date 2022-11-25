@@ -6,7 +6,7 @@ COPY zsh-in-docker.sh /tmp/zsh-in-docker.sh
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y update \ 
     && echo "------------------------------------------------------ Common" \
-    && apt-get install -y sudo curl wget telnet jq dnsutils \
+    && apt-get install -y sudo curl wget telnet jq dnsutils apt-utils \
     && apt-get install -y software-properties-common \
     && apt-get install -y zip gzip tar \
     && echo "------------------------------------------------------ User" \
