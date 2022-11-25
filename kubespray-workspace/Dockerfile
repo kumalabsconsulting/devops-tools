@@ -8,12 +8,13 @@ ENV HELM_VERSION="v3.10.2" \
     KS9_VERSION="v0.26.7" \
     OCTANT_VERSION="0.25.1" \
     KUBESPRAY_VERSION="v2.20.0" \
-    KREW_VERSION=""
+    KREW_VERSION="v0.4.3"
 
 # OCTAN_VERSION without the 'v'
 
 USER abc
 RUN sudo apt-get -y update \
+    && sudo apt-get -y install python3-jinja2 \
     && echo "------------------------------------------------------ Kubectl" \
     && cd /tmp && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && install kubectl /home/abc/.local/bin/kubectl \
