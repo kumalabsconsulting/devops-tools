@@ -172,13 +172,16 @@ RUN git config --global credential.helper cache \
     && echo "------------------------------------------------------ Pipx" \
     && sudo apt-get -y install python3-venv \
     && python3 -m pip install --user pipx \
-    && python3 -m pipx ensurepath \
-    && echo "------------------------------------------------------ last clean" \
+    && python3 -m pipx ensurepath
+
+USER root
+RUN echo "------------------------------------------------------ last clean" \
     && sudo apt-get -y autoremove \
     && sudo apt-get -y clean \
     && sudo apt-get -y autoclean \
     && sudo rm -rf /var/lib/apt/lists/*
 
+USER abc
 ENV PATH="/home/abc/bin:${PATH}"
 ENV PATH="/home/abc/.local/bin:${PATH}"
 ENV PATH="/home/abc/.nix-profile/bin:${PATH}"
