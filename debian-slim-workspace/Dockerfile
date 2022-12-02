@@ -152,9 +152,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y update \
     && echo 'alias pm2="cd /home/abc/apps/node && . env/bin/activate && pm2"' >> /home/abc/.zshrc \
     && echo 'alias lg="lazygit"' >> /home/abc/.zshrc \
     && echo "------------------------------------------------------ Clean" \
-    && apt-get -y autoremove \
-    && apt-get -y clean \
-    && apt-get -y autoclean \
     && rm -rf /home/abc/.oh-my-zsh/.git \
     && rm -rf /home/abc/.oh-my-zsh/.github \
     && rm -rf /home/abc/.oh-my-zsh/custom/plugins/git-flow-completion/.git \
@@ -177,7 +174,10 @@ RUN git config --global credential.helper cache \
     && python3 -m pip install --user pipx \
     && python3 -m pipx ensurepath \
     && echo "------------------------------------------------------ last clean" \
-    && rm -rf /var/lib/apt/lists/*
+    && sudo apt-get -y autoremove \
+    && sudo apt-get -y clean \
+    && sudo apt-get -y autoclean \
+    && sudo rm -rf /var/lib/apt/lists/*
 
 ENV PATH="/home/abc/bin:${PATH}"
 ENV PATH="/home/abc/.local/bin:${PATH}"
