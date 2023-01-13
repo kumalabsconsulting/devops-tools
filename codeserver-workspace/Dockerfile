@@ -74,6 +74,7 @@ RUN echo "------------------------------------------------------ common extensio
     && code-server --install-extension  circleci.circleci \
     && code-server --install-extension  lakshitsomani.best-themes-redefined \
     && code-server --install-extension  usernamehw.prism \
+    && code-server --install-extension  ms-azuretools.vscode-docker \
     && echo "------------------------------------------------------ icons" \
     && code-server --install-extension  emroussel.atom-icons \
     && code-server --install-extension  laurenttreguier.vscode-simple-icons 
