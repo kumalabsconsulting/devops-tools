@@ -5,7 +5,7 @@ jobs:
   build_debian:
 
     docker:
-      - image: cimg/base:2022.11
+      - image: cimg/base:current
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
@@ -42,7 +42,7 @@ jobs:
   build_debian_slim:
 
     docker:
-      - image: cimg/base:2022.11
+      - image: cimg/base:current
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
@@ -78,7 +78,7 @@ jobs:
 ############ base WORKSPACE ###############
   build_base:
     docker:
-      - image: cimg/base:2022.11
+      - image: cimg/base:current
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
@@ -111,7 +111,7 @@ jobs:
 ############ base SLIM WORKSPACE ###############
   build_base_slim:
     docker:
-      - image: cimg/base:2022.11
+      - image: cimg/base:current
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
@@ -144,7 +144,7 @@ jobs:
 ############ codeserver WORKSPACE ###############
   build_codeserver:
     docker:
-      - image: cimg/base:2022.11
+      - image: cimg/base:current
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
@@ -177,7 +177,7 @@ jobs:
 ############ ansible WORKSPACE ###############
   build_ansible_terraform:
     docker:
-      - image: cimg/base:2022.11
+      - image: cimg/base:current
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
@@ -210,7 +210,7 @@ jobs:
 ############ kubernetes WORKSPACE ###############
   build_kubespray:
     docker:
-      - image: cimg/base:2022.11
+      - image: cimg/base:current
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
