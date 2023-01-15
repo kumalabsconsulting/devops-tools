@@ -16,6 +16,7 @@ steps:
     repo: redbeard28/debian-workspace
     tags: ${MYTAG}
     context: "debian-slim-workspace"
+    dockerfile: "debian-slim-workspace/Dockerfile"
 #  build:
 #    command:
 #      - >
