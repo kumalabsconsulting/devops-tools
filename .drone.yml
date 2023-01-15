@@ -8,7 +8,7 @@ steps:
   when:
     branch: main
   image: plugins/docker
-  environment:
+  build_args:
     MYTAG: 0.2
   settings:
     username: ${DOCKERHUB_USER}
@@ -17,6 +17,19 @@ steps:
     tags: ${MYTAG}
     context: "debian-slim-workspace"
     dockerfile: "debian-slim-workspace/Dockerfile"
+- name: build_base
+  when:
+    branch: main
+  image: plugins/docker
+  build_args:
+    MYTAG: 0.2
+  settings:
+    username: ${DOCKERHUB_USER}
+    password: ${DOCKERHUB_PASSWORD}
+    repo: redbeard28/base-devspace
+    tags: ${MYTAG}
+    context: "base-devspace"
+    dockerfile: "base-devspace/Dockerfile"
 #  build:
 #    command:
 #      - >
