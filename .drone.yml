@@ -15,7 +15,7 @@ steps:
     password: ${DOCKERHUB_PASSWORD}
     repo: redbeard28/debian-workspace
     tags: ${MYTAG}
-    context: "/debian-slim-workspace"
+    context: "debian-slim-workspace"
 #  build:
 #    command:
 #      - >
