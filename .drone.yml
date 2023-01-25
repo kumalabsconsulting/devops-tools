@@ -24,8 +24,10 @@ steps:
   build_args:
     MYTAG: 0.2
   settings:
-    username: "${DOCKERHUB_USER}"
-    password: "${DOCKERHUB_PASSWORD}"
+    username:
+      from-secret: DOCKERHUB_USER
+    password:
+      from-secret: DOCKERHUB_PASSWORD
     repo: redbeard28/base-devspace
     tags: ${MYTAG}
     context: "base-devspace"
@@ -67,21 +69,5 @@ steps:
 #            docker push ${DOCKER_REPO}:$MYTAG
 #          fi
 #        fi
----
-kind: pipeline
-type: ssh
-name: Tutorial
 
-server:
-  host: 10.10.2.4
-  user: root
-
-clone:
-  disable: true
-
-steps:
-  - name: test_CMD
-    commands:
-      - hostname
-      - ip a
 
