@@ -29,7 +29,7 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/base-devspace
-    tags: ${MYTAG}
+    tags: 0.2
     context: "base-devspace"
     dockerfile: "base-devspace/Dockerfile"
 #  build:
