@@ -8,20 +8,26 @@ steps:
   when:
     branch: main
   image: plugins/docker
-  secrets: [ DOCKERHUB_USER, DOCKERHUB_PASSWORD ]
-  build_args:
-    MYTAG: 0.2
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/debian-workspace
-    tags: ${MYTAG}
+    tags: 0.2
     context: "debian-slim-workspace"
     dockerfile: "debian-slim-workspace/Dockerfile"
 - name: build_base
   when:
     branch: main
   image: plugins/docker
-  secrets: [ DOCKERHUB_USER, DOCKERHUB_PASSWORD ]
-  build_args:
-    MYTAG: 0.2
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/base-devspace
     tags: ${MYTAG}
     context: "base-devspace"
