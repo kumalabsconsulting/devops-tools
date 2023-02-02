@@ -32,6 +32,48 @@ steps:
     tags: 0.2
     context: "base-devspace"
     dockerfile: "base-devspace/Dockerfile"
+- name: build_codeserver
+  when:
+    branch: main
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    repo: redbeard28/codeserver-workspace
+    tags: 0.2
+    context: "codeserver-workspace"
+    dockerfile: "codeserver-workspace/Dockerfile"
+- name: build_ansible_terraform
+  when:
+    branch: main
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    repo: redbeard28/ansible-terraform-workspace
+    tags: 0.2
+    context: "ansible-terraform-workspace"
+    dockerfile: "ansible-terraform-workspace/Dockerfile"
+- name: build_kubespray
+  when:
+    branch: main
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    repo: redbeard28/kubespray-workspace
+    tags: 0.2
+    context: "kubespray-workspace"
+    dockerfile: "kubespray-workspace/Dockerfile"
 #  build:
 #    command:
 #      - >
