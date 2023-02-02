@@ -35,6 +35,9 @@ steps:
     context: "base-devspace"
     dockerfile: "base-devspace/Dockerfile"
 - name: build_codeserver
+  depends_on:
+    - build_debian
+    - build_base
   when:
     branch: main
   image: plugins/docker
@@ -50,6 +53,8 @@ steps:
     dockerfile: "codeserver-workspace/Dockerfile"
 - name: build_ansible_terraform
   depends_on:
+    - build_debian
+    - build_base
     - build_codeserver
   when:
     branch: main
@@ -66,6 +71,9 @@ steps:
     dockerfile: "ansible-terraform-workspace/Dockerfile"
 - name: build_kubespray
   depends_on:
+    - build_debian
+    - build_base
+    - build_codeserver
     - build_ansible_terraform
   when:
     branch: main
