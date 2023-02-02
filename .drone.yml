@@ -19,6 +19,8 @@ steps:
     context: "debian-slim-workspace"
     dockerfile: "debian-slim-workspace/Dockerfile"
 - name: build_base
+  depends_on:
+    - build_debian
   when:
     branch: main
   image: plugins/docker
@@ -47,6 +49,8 @@ steps:
     context: "codeserver-workspace"
     dockerfile: "codeserver-workspace/Dockerfile"
 - name: build_ansible_terraform
+  depends_on:
+    - build_codeserver
   when:
     branch: main
   image: plugins/docker
@@ -61,6 +65,8 @@ steps:
     context: "ansible-terraform-workspace"
     dockerfile: "ansible-terraform-workspace/Dockerfile"
 - name: build_kubespray
+  depends_on:
+    - build_ansible_terraform
   when:
     branch: main
   image: plugins/docker
