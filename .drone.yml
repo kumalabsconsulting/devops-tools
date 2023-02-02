@@ -8,8 +8,6 @@ steps:
   when:
     branch: main
   image: plugins/docker
-  commands:
-    - docker system prune -f
   settings:
     dockerfile: Dockerfile
     username:
@@ -20,76 +18,76 @@ steps:
     tags: 0.2
     context: "debian-slim-workspace"
     dockerfile: "debian-slim-workspace/Dockerfile"
-#- name: build_base
-#  depends_on:
-#    - build_debian
-#  when:
-#    branch: main
-#  image: plugins/docker
-#  settings:
-#    dockerfile: Dockerfile
-#    username:
-#      from_secret: DOCKERHUB_USER
-#    password:
-#      from_secret: DOCKERHUB_PASSWORD
-#    repo: redbeard28/base-devspace
-#    tags: 0.2
-#    context: "base-devspace"
-#    dockerfile: "base-devspace/Dockerfile"
-#- name: build_codeserver
-#  depends_on:
-#    - build_debian
-#    - build_base
-#  when:
-#    branch: main
-#  image: plugins/docker
-#  settings:
-#    dockerfile: Dockerfile
-#    username:
-#      from_secret: DOCKERHUB_USER
-#    password:
-#      from_secret: DOCKERHUB_PASSWORD
-#    repo: redbeard28/codeserver-workspace
-#    tags: 0.2
-#    context: "codeserver-workspace"
-#    dockerfile: "codeserver-workspace/Dockerfile"
-#- name: build_ansible_terraform
-#  depends_on:
-#    - build_debian
-#    - build_base
-#    - build_codeserver
-#  when:
-#    branch: main
-#  image: plugins/docker
-#  settings:
-#    dockerfile: Dockerfile
-#    username:
-#      from_secret: DOCKERHUB_USER
-#    password:
-#      from_secret: DOCKERHUB_PASSWORD
-#    repo: redbeard28/ansible-terraform-workspace
-#    tags: 0.2
-#    context: "ansible-terraform-workspace"
-#    dockerfile: "ansible-terraform-workspace/Dockerfile"
-#- name: build_kubespray
-#  depends_on:
-#    - build_debian
-#    - build_base
-#    - build_codeserver
-#    - build_ansible_terraform
-#  when:
-#    branch: main
-#  image: plugins/docker
-#  settings:
-#    dockerfile: Dockerfile
-#    username:
-#      from_secret: DOCKERHUB_USER
-#    password:
-#      from_secret: DOCKERHUB_PASSWORD
-#    repo: redbeard28/kubespray-workspace
-#    tags: 0.2
-#    context: "kubespray-workspace"
-#    dockerfile: "kubespray-workspace/Dockerfile"
+- name: build_base
+  depends_on:
+    - build_debian
+  when:
+    branch: main
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    repo: redbeard28/base-devspace
+    tags: 0.2
+    context: "base-devspace"
+    dockerfile: "base-devspace/Dockerfile"
+- name: build_codeserver
+  depends_on:
+    - build_debian
+    - build_base
+  when:
+    branch: main
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    repo: redbeard28/codeserver-workspace
+    tags: 0.2
+    context: "codeserver-workspace"
+    dockerfile: "codeserver-workspace/Dockerfile"
+- name: build_ansible_terraform
+  depends_on:
+    - build_debian
+    - build_base
+    - build_codeserver
+  when:
+    branch: main
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    repo: redbeard28/ansible-terraform-workspace
+    tags: 0.2
+    context: "ansible-terraform-workspace"
+    dockerfile: "ansible-terraform-workspace/Dockerfile"
+- name: build_kubespray
+  depends_on:
+    - build_debian
+    - build_base
+    - build_codeserver
+    - build_ansible_terraform
+  when:
+    branch: main
+  image: plugins/docker
+  settings:
+    dockerfile: Dockerfile
+    username:
+      from_secret: DOCKERHUB_USER
+    password:
+      from_secret: DOCKERHUB_PASSWORD
+    repo: redbeard28/kubespray-workspace
+    tags: 0.2
+    context: "kubespray-workspace"
+    dockerfile: "kubespray-workspace/Dockerfile"
 #  build:
 #    command:
 #      - >
