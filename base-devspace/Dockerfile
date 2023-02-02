@@ -1,4 +1,4 @@
-FROM redbeard28/debian-workspace:0.2
+FROM redbeard28/debian-workspace:0.2.1 AS BUILDER
 
 ENV FRP_VERSION=0.45.0
 

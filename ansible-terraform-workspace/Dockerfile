@@ -1,5 +1,5 @@
 #FROM alnoda/extended-workspace:4.0
-FROM redbeard28/codeserver-workspace:0.2
+FROM redbeard28/codeserver-workspace:0.2.1 AS BUILDER
 
 # Actions for which root escalation is needed
 COPY supervisord/* /etc/supervisord/

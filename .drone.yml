@@ -15,7 +15,7 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/debian-workspace
-    tags: 0.2
+    tags: 0.2.1
     context: "debian-slim-workspace"
     dockerfile: "debian-slim-workspace/Dockerfile"
 - name: build_base
@@ -31,7 +31,7 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/base-devspace
-    tags: 0.2
+    tags: 0.2.1
     context: "base-devspace"
     dockerfile: "base-devspace/Dockerfile"
 - name: build_codeserver
@@ -48,7 +48,7 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/codeserver-workspace
-    tags: 0.2
+    tags: 0.2.1
     context: "codeserver-workspace"
     dockerfile: "codeserver-workspace/Dockerfile"
 - name: build_ansible_terraform
@@ -66,7 +66,7 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/ansible-terraform-workspace
-    tags: 0.2
+    tags: 0.2.1
     context: "ansible-terraform-workspace"
     dockerfile: "ansible-terraform-workspace/Dockerfile"
 - name: build_kubespray
@@ -85,7 +85,7 @@ steps:
     password:
       from_secret: DOCKERHUB_PASSWORD
     repo: redbeard28/kubespray-workspace
-    tags: 0.2
+    tags: 0.2.1
     context: "kubespray-workspace"
     dockerfile: "kubespray-workspace/Dockerfile"
 #  build:

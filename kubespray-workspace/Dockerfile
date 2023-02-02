@@ -1,4 +1,4 @@
-FROM redbeard28/ansible-terraform-workspace:0.2
+FROM redbeard28/ansible-terraform-workspace:0.2.1 AS BUILDER
 
 USER root
 RUN rm -rf /home/docs/*
