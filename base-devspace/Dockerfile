@@ -15,6 +15,7 @@ RUN echo "------------------------------------------------------ log dir for wor
     && chown -R abc:abc /home/examples
 
 USER abc
+ENV DEBIAN_FRONTEND=noninteractive
 COPY --chown=abc:abc mkdocs-material /home/examples/mkdocs-material
 # Install workspace tools and applications
 RUN sudo apt-get -y update \
